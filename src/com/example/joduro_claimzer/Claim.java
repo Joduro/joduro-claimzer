@@ -6,30 +6,34 @@ import java.util.Date;
 public class Claim {
 
 	private String name;
-	private String desc;
+	//private String desc;
 	private Date startDate;
 	private Date endDate;
 	private String status;
 	
 	private ArrayList<Expense> expensesList;
 	
-	public Claim(String name, String desc, Date startDate, Date endDate,
-			String status, ArrayList<Expense> expensesList) {
+	public Claim(String name, Date startDate, Date endDate,
+			String status/*, ArrayList<Expense> expensesList*/) {
 		super();
 		this.name = name;
-		this.desc = desc;
+		//this.desc = desc;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.status = status;
-		this.expensesList = expensesList;
+		//this.expensesList = expensesList;
 	}
 
 	public void addExpense(Expense expense) {
-		for (int i = 0; i < expensesList.size();++i){
+		/*
+		int i = 0;
+		for (; i < expensesList.size();++i){
 			if(expense.getDate().before(expensesList.get(i).getDate())){
-				expensesList.add(i, expense);
+				//expensesList.add(i, expense);
 			}
 		}
+		expensesList.add(i, expense);
+		*/
 		expensesList.add(expense);
 	}
 	
@@ -56,14 +60,14 @@ public class Claim {
 		this.name = name;
 	}
 
-	public String getDesc() {
+	/*public String getDesc() {
 		return desc;
 	}
 
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-
+*/
 	public Date getStartDate() {
 		return startDate;
 	}
