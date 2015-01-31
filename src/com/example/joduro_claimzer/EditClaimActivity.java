@@ -25,7 +25,7 @@ public class EditClaimActivity extends Activity {
 	
     public void claimSaveButton(View v){
         // Switch activity to edit claim
-    	/*
+
     	//Add the claim
     	EditText NameEditText = (EditText) findViewById( R.id.claimNameEditText);  
     	String nameText = NameEditText.getText().toString();
@@ -37,7 +37,7 @@ public class EditClaimActivity extends Activity {
     	String edText = edEditText.getText().toString();
     	
     	//code snippit stolen from https://stackoverflow.com/questions/4216745/java-string-to-date-conversion Jan 2015
-    	DateFormat format = new SimpleDateFormat("d/MM,yyyy", Locale.ENGLISH);
+    	DateFormat format = new SimpleDateFormat("d/MM/yyyy", Locale.ENGLISH);
     	
     	Date sdDate = null;
     	Date edDate = null;
@@ -59,9 +59,10 @@ public class EditClaimActivity extends Activity {
     	
     	//!!!!!NEED TO SAVE IT TO DISK SOMEHOW
     	
-    	 */
-        Intent intent = new Intent(EditClaimActivity.this, MainActivity.class);
-        startActivity(intent);
+    	finish();
+    	
+        //Intent intent = new Intent(EditClaimActivity.this, MainActivity.class);
+        //startActivity(intent);
         
     }
 

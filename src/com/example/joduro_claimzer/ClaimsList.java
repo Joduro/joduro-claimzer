@@ -6,6 +6,9 @@ public class ClaimsList {
 	
 	private ArrayList<Claim> claimsList;
 	
+	public ClaimsList(){
+		claimsList = new ArrayList<Claim>();
+	}
 	public void addClaim(Claim claim) {
 		/*
 		int i = 0;
