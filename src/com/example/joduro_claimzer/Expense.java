@@ -14,6 +14,16 @@ public class Expense {
 		return getDesc();
 	}
 	
+	public Expense(Date date, String desc, /*String category,*/ double cost,
+			String currency) {
+		super();
+		this.date = date;
+		this.desc = desc;
+		//this.category = category;
+		this.cost = cost;
+		this.currency = currency;
+	}
+
 	public Date getDate() {
 		return date;
 	}

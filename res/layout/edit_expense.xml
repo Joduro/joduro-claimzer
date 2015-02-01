@@ -15,28 +15,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp" />
 
-    <Button
-        android:id="@+id/claimSaveButton"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/expCostEditText"
-        android:layout_marginTop="106dp"
-        android:minHeight="48dp"
-        android:onClick="expSaveButton"
-        android:text="@string/done_editing" />
-
-    <TextView
-        android:id="@+id/expCurrencyTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/claimSaveButton"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="43dp"
-        android:text="@string/currency"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <EditText
         android:id="@+id/expDescEditText"
         android:layout_width="match_parent"
@@ -56,26 +34,6 @@
         android:layout_alignParentLeft="true"
         android:text="@string/desc"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/expDateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/expDescEditText"
-        android:layout_marginTop="36dp"
-        android:text="@string/date"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/expDateEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/expDateTextView"
-        android:layout_alignBottom="@+id/expDateTextView"
-        android:layout_toRightOf="@+id/expDateTextView"
-        android:ems="10"
-        android:inputType="date" />
 
     <EditText
         android:id="@+id/expCurrencyEditText"
@@ -111,5 +69,46 @@
         android:layout_toRightOf="@+id/expCostTextView"
         android:ems="10"
         android:inputType="number" />
+
+    <TextView
+        android:id="@+id/expCurrencyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/expSaveButton"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="62dp"
+        android:text="@string/currency"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/expDateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/expCostEditText"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="64dp"
+        android:layout_toRightOf="@+id/expDateTextView"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/expDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/expDateEditText"
+        android:layout_alignBottom="@+id/expDateEditText"
+        android:layout_alignParentLeft="true"
+        android:text="@string/date"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/expSaveButton"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:minHeight="48dp"
+        android:onClick="expSaveButton"
+        android:text="@string/done_editing" />
 
 </RelativeLayout>

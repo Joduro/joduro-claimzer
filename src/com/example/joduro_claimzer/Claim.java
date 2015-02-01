@@ -45,6 +45,10 @@ public class Claim {
 		return expensesList;
 	}
 	
+	public void updateExpense(int x, Expense expense) {
+		expensesList.set(x, expense);
+	}
+	
 	public String toString() {
 		
 		DateFormat format = new SimpleDateFormat("DD EEE MMM yyyy", Locale.ENGLISH);

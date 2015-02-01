@@ -8,11 +8,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class ListExpensesActivity extends Activity {
 
+	protected int claimPos; 
+	
+	protected ArrayAdapter<Expense> expenseAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,24 +28,49 @@ public class ListExpensesActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			
-			int ClaimPos = extras.getInt("claim_position");
+			claimPos = extras.getInt("claim_position");
 			
 	    	ClaimsListController ct = new ClaimsListController();
-	    	Claim claim = ct.getClaim(ClaimPos);
+	    	Claim claim = ct.getClaim(claimPos);
 	    	
 	        ListView listView = (ListView) findViewById(R.id.expensesListView);
 	        ArrayList<Expense> list = claim.getExpenses();
-	        ArrayAdapter<Expense> expenseAdapter = new ArrayAdapter<Expense>(this, android.R.layout.simple_list_item_1, list);
+	        /*ArrayAdapter<Expense>*/ expenseAdapter = new ArrayAdapter<Expense>(this, android.R.layout.simple_list_item_1, list);
 	        listView.setAdapter(expenseAdapter);
+	        
+	        listView.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					//Adapted from code posted by user914425 on https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android
+					// accessed Jan 2015  
+					Intent intent = new Intent(ListExpensesActivity.this, EditExpenseActivity.class);
+					intent.putExtra("claim_position", claimPos);
+			        intent.putExtra("expense_position", position);
+			        startActivity(intent);
+					
+				}
+	        	
+	        	
+	        });
 		}
 		//if there is somehow no claim bundled with the intent just quit
 		else {
 			finish();
 		}
 	}
+    protected void onResume() {
+    	super.onResume();
+    	expenseAdapter.notifyDataSetChanged();
+    	//Toast.makeText(this,"Resuming Main",Toast.LENGTH_SHORT).show();
+    	
+    }
+    
     public void editExpenseScreen(View v){
         // Switch activity to edit claim
         Intent intent = new Intent(ListExpensesActivity.this, EditExpenseActivity.class);
+        intent.putExtra("claim_position", claimPos);
         startActivity(intent);
     }
     
