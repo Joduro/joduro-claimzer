@@ -1,7 +1,10 @@
 package com.example.joduro_claimzer;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class Claim {
 
@@ -21,7 +24,7 @@ public class Claim {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.status = status;
-		//this.expensesList = expensesList;
+		this.expensesList = new ArrayList<Expense>();
 	}
 
 	public void addExpense(Expense expense) {
@@ -38,8 +41,15 @@ public class Claim {
 		expensesList.remove(expense);
 	}
 	
+	public ArrayList<Expense> getExpenses() {
+		return expensesList;
+	}
+	
 	public String toString() {
-		return getStartDate().toString() + "\n" + getName();
+		
+		DateFormat format = new SimpleDateFormat("DD EEE MMM yyyy", Locale.ENGLISH);
+		
+		return format.format(getStartDate()) + " - " + getName();
 	}
 	
 	/*

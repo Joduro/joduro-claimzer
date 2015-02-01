@@ -10,6 +10,10 @@ public class Expense {
 	private double cost;
 	private String currency;
 
+	public String toString() {
+		return getDesc();
+	}
+	
 	public Date getDate() {
 		return date;
 	}

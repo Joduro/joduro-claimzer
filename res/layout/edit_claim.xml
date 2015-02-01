@@ -28,53 +28,10 @@
         android:ems="10"
         android:inputType="text" />
 
-    <TextView
-        android:id="@+id/expDateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/claimNameEditText"
-        android:layout_marginTop="28dp"
-        android:text="@string/start_date"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/ClaimStartDateEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/expDateTextView"
-        android:layout_toRightOf="@+id/expDateTextView"
-        android:ems="10"
-        android:inputType="date" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/claimEndDateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/ClaimStartDateEditText"
-        android:layout_marginTop="36dp"
-        android:text="@string/end_date"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/claimEndDateEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/claimEndDateTextView"
-        android:layout_toRightOf="@+id/claimEndDateTextView"
-        android:ems="10"
-        android:inputType="date" />
-
     <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/claimEndDateEditText"
+        android:layout_below="@+id/expCostEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp" />
 
@@ -85,22 +42,50 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/claimEndDateEditText"
-        android:layout_marginTop="106dp"
         android:layout_weight="0.13"
         android:longClickable="false"
         android:minHeight="48dp"
         android:onClick="claimSaveButton"
         android:text="@string/done_editing" />
 
-    <Spinner
-        android:id="@+id/spinner1"
-        style="android:spinnerStyle"
+    <TextView
+        android:id="@+id/claimStartDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/claimEndDateEditText"
-        android:layout_marginTop="46dp"
-        android:layout_toLeftOf="@+id/ClaimStartDateEditText"
-        android:entries="@array/date_arrays"
-        android:prompt="@id/addClaimButton" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/claimNameEditText"
+        android:layout_marginTop="56dp"
+        android:text="@string/start_date"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/claimStartDateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/claimStartDateTextView"
+        android:layout_toRightOf="@+id/claimStartDateTextView"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/claimEndDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="@string/end_date"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/claimEndDateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/claimEndDateTextView"
+        android:layout_toRightOf="@+id/claimEndDateTextView"
+        android:ems="10"
+        android:inputType="date" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

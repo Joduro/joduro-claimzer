@@ -8,53 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/expDescTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="37dp"
-        android:text="@string/desc"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/expDateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/claimNameEditText"
-        android:layout_marginTop="28dp"
-        android:text="@string/date"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/ClaimStartDateEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/expDateTextView"
-        android:layout_toRightOf="@+id/expDateTextView"
-        android:ems="10"
-        android:inputType="date" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/claimEndDateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/ClaimStartDateEditText"
-        android:layout_marginTop="36dp"
-        android:text="@string/cost"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/claimEndDateEditText"
+        android:layout_below="@+id/expCostEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp" />
 
@@ -64,50 +21,95 @@
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/claimEndDateEditText"
+        android:layout_below="@+id/expCostEditText"
         android:layout_marginTop="106dp"
         android:minHeight="48dp"
-        android:onClick="claimSaveButton"
+        android:onClick="expSaveButton"
         android:text="@string/done_editing" />
 
+    <TextView
+        android:id="@+id/expCurrencyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/claimSaveButton"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="43dp"
+        android:text="@string/currency"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <EditText
-        android:id="@+id/claimNameEditText"
+        android:id="@+id/expDescEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/expDescTextView"
-        android:layout_alignBottom="@+id/expDescTextView"
         android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="34dp"
         android:layout_toRightOf="@+id/expDescTextView"
         android:ems="10"
         android:inputType="text" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/expDescTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/expDescEditText"
+        android:layout_alignParentLeft="true"
+        android:text="@string/desc"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/expDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:text="@string/currency"
+        android:layout_below="@+id/expDescEditText"
+        android:layout_marginTop="36dp"
+        android:text="@string/date"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/textView1"
-        android:layout_toRightOf="@+id/textView1"
-        android:ems="10"
-        android:inputType="textCapCharacters" />
-
-    <EditText
-        android:id="@+id/claimEndDateEditText"
+        android:id="@+id/expDateEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/claimNameEditText"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/claimEndDateTextView"
+        android:layout_alignBaseline="@+id/expDateTextView"
+        android:layout_alignBottom="@+id/expDateTextView"
+        android:layout_toRightOf="@+id/expDateTextView"
         android:ems="10"
         android:inputType="date" />
-    
+
+    <EditText
+        android:id="@+id/expCurrencyEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/expCurrencyTextView"
+        android:layout_alignBottom="@+id/expCurrencyTextView"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/expCurrencyTextView"
+        android:ems="10"
+        android:inputType="textCapCharacters" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/expCostTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/expCurrencyEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="46dp"
+        android:text="@string/cost"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/expCostEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/expCostTextView"
+        android:layout_alignBottom="@+id/expCostTextView"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/expCostTextView"
+        android:ems="10"
+        android:inputType="number" />
+
 </RelativeLayout>

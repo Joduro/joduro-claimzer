@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -41,6 +42,7 @@ public class MainActivity extends Activity {
         	}
         });
         
+        //Bring up the edit claim screen on long click
         listView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
@@ -61,6 +63,23 @@ public class MainActivity extends Activity {
 			}
         	
         });
+        
+        listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				//Adapted from code posted by user914425 on https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android
+				// accessed Jan 2015  
+				Intent intent = new Intent(MainActivity.this, ListExpensesActivity.class);
+		        intent.putExtra("claim_position", position);
+		        startActivity(intent);
+				
+			}
+        	
+        	
+        });
+        
     }
 
 

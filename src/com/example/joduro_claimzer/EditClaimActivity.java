@@ -40,14 +40,13 @@ public class EditClaimActivity extends Activity {
 	    	Claim claim = ct.getClaim(updatingClaimPos);
 	    	
 	    	//Fill in the claim to match the existing one
-	    	//code adapted from https://stackoverflow.com/questions/4216745/java-string-to-date-conversion 
-	    	// accessed Jan 2015
+
 	    	DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 	    	
 	    	EditText NameEditText = (EditText) findViewById( R.id.claimNameEditText);  
 	    	NameEditText.setText(claim.getName());
 	    	
-	    	EditText sdEditText = (EditText) findViewById( R.id.ClaimStartDateEditText);  
+	    	EditText sdEditText = (EditText) findViewById( R.id.claimStartDateEditText);  
 	    	sdEditText.setText(format.format(claim.getStartDate()));
 	    	
 	    	EditText edEditText = (EditText) findViewById( R.id.claimEndDateEditText);  
@@ -58,10 +57,6 @@ public class EditClaimActivity extends Activity {
 		}
 		else {
 			updatingClaimPos = -1;
-		}
-		
-		if (updatingClaimPos >= 0){
-			Toast.makeText(this,"Updating a claim",Toast.LENGTH_SHORT).show();
 		}
 	}
 	
@@ -78,7 +73,7 @@ public class EditClaimActivity extends Activity {
     	EditText NameEditText = (EditText) findViewById( R.id.claimNameEditText);  
     	String nameText = NameEditText.getText().toString();
     	
-    	EditText sdEditText = (EditText) findViewById( R.id.ClaimStartDateEditText);  
+    	EditText sdEditText = (EditText) findViewById( R.id.claimStartDateEditText);  
     	String sdText = sdEditText.getText().toString();
     	
     	EditText edEditText = (EditText) findViewById( R.id.claimEndDateEditText);  
