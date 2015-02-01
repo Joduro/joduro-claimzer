@@ -1,6 +1,7 @@
 package com.example.joduro_claimzer;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.util.Log;
 
@@ -27,13 +28,13 @@ public class ClaimsList {
 	public Claim getClaim(int position){
 		return claimsList.get(position);
 	}
-
+	/*
 	public void updateClaim(int position, Claim claim){
 		claimsList.set(position, claim);
 		notifyListeners();
 	}
-	
-	private void notifyListeners() {
+	*/
+	public void notifyListeners() {
 		for (Listener listner : listeners) {
 			listner.update();
 		}	
@@ -54,6 +55,13 @@ public class ClaimsList {
 		return claimsList;
 		
 	}
-	
-	
+	public void updateClaim(int claimPos, String name, Date startDate,
+			Date endDate, String status) {
+		Claim claim = claimsList.get(claimPos);
+		claim.setName(name);
+		claim.setEndDate(endDate);
+		claim.setStartDate(startDate);
+		claim.setStatus(status);
+		notifyListeners();
+	}
 }

@@ -115,24 +115,25 @@ public class EditClaimActivity extends Activity {
     	
 		if (!(sdDate == null || edDate == null || nameText == null)) { 
 	    	//---
-	    	Claim claim = new Claim(nameText, sdDate, edDate, statusText );
+	    	
 	    	
 	    	ClaimsListController ct = new ClaimsListController();
 	    	
 	    	//case for updating a claim
-			if (updatingClaimPos >= 0){
-				ct.updateClaim(updatingClaimPos, claim);
+			if (updatingClaimPos >= 0){			
+				ct.updateClaim(updatingClaimPos, nameText, sdDate, edDate, statusText);
 				Toast.makeText(this,"Updated Claim " + nameText,Toast.LENGTH_SHORT).show();
 				updatingClaimPos = -1;
 			}
 			
 			//case for creating a new claim
 			else{
+				Claim claim = new Claim(nameText, sdDate, edDate, statusText );
 		    	ct.addClaim(claim); 	
 		    	Toast.makeText(this,"New Claim " + nameText,Toast.LENGTH_SHORT).show();
 			}
 	    	//!!!!!NEED TO SAVE IT TO DISK SOMEHOW
-	    	
+			
 	    	finish();
 	    	
 	        //Intent intent = new Intent(EditClaimActivity.this, MainActivity.class);

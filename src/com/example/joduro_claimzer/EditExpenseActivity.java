@@ -148,7 +148,8 @@ public class EditExpenseActivity extends Activity
 		    	Toast.makeText(this,"New Expense " + descText,Toast.LENGTH_SHORT).show();
 			}
 	    	//!!!!!NEED TO SAVE IT TO DISK SOMEHOW
-	    	
+			claim.updateTotal();
+			Toast.makeText(this,"Total: " + claim.getTotal(),Toast.LENGTH_SHORT).show();
 	    	finish();
 	    	
 	        //Intent intent = new Intent(EditClaimActivity.this, MainActivity.class);

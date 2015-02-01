@@ -1,5 +1,7 @@
 package com.example.joduro_claimzer;
 
+import java.util.Date;
+
 import android.util.Log;
 
 //import java.util.Calendar;
@@ -26,8 +28,16 @@ public class ClaimsListController {
 	public Claim getClaim(int position){
 		return getClaimsList().getClaim(position);
 	}
-	
+	/*
 	public void updateClaim(int position, Claim claim){
 		getClaimsList().updateClaim(position, claim);
+	}
+	*/
+
+	public void updateClaim(int claimPos, String name, Date startDate,
+			Date endDate, String status) {
+		
+		getClaimsList().updateClaim(claimPos, name, startDate, endDate, status);
+		
 	}
 }

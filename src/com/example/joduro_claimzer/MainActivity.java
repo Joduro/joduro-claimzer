@@ -93,7 +93,9 @@ public class MainActivity extends Activity {
 
     protected void onResume() {
     	super.onResume();
-    	//Toast.makeText(this,"Resuming Main",Toast.LENGTH_SHORT).show();
+    	//ListView listView = (ListView) findViewById(R.id.ClaimsListView);
+    	//listView.getAdapter().notifyDataSetChanged();
+    	//expenseAdapter.notifyDataSetChanged();
     	
     }
     public void editClaimScreen(View v){

@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import android.util.Log;
@@ -18,6 +19,50 @@ public class Claim {
 	
 	private ArrayList<Expense> expensesList;
 	
+	private String total;
+	
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
+	}
+	
+	public void updateTotal(){
+		HashMap<String, Double> counts = new HashMap<String, Double>();
+		
+		for (Expense expense : getExpenses()){
+			if(counts.containsKey(expense.getCurrency())){
+				counts.put(expense.getCurrency(), expense.getCost() + counts.get(expense.getCurrency()));
+			}
+			else {
+				counts.put(expense.getCurrency(), expense.getCost());
+			}
+		}
+		
+		String temp = counts.toString();
+		
+		if (temp.startsWith("{") && temp.length() > 2){
+			temp = temp.replace("{", "");
+			temp = temp.replace("}", "");
+			//temp = temp.substring(1, -1);
+			String[] prices = temp.split(", ");
+			
+			String tempTotal = "";
+			for (String price : prices){
+				String[] items = price.split("=");
+				tempTotal+= items[1];
+				tempTotal+= items[0];
+				tempTotal+= ", ";
+			}			
+			
+			//tempTotal = tempTotal.substring(0, -1);
+			
+			setTotal(tempTotal);
+			
+	    	ClaimsListController.getClaimsList().notifyListeners();
+		}
+	}
 	public int getStatusPos() {
 		if (status.equals("In progress")) 
 			return 0;
@@ -37,6 +82,7 @@ public class Claim {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.status = status;
+		this.total = "0";
 		this.expensesList = new ArrayList<Expense>();
 	}
 
@@ -66,7 +112,7 @@ public class Claim {
 		
 		DateFormat format = new SimpleDateFormat("EEE MMM DD yyyy", Locale.ENGLISH);
 		
-		return format.format(getStartDate()) + " - " + getName() + "\n" + getStatus();
+		return format.format(getStartDate()) + " - " + getName() + "\n" + "Total: " + getTotal() + "\n" + getStatus();
 	}
 	
 	/*
