@@ -31,8 +31,17 @@
         <item>12</item>
     </string-array>
 
+        <string-array name="status_arrays">
+        <item>In progress</item>
+        <item>Submitted</item>
+        <item>Returned</item>
+        <item>Approved</item>
+    </string-array>
+    
     <string name="title_activity_list_expenses">ListExpensesActivity</string>
 
     <string name="category">Category:</string>
+
+    <string name="status">Status:</string>
 
 </resources>

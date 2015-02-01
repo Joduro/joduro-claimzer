@@ -9,11 +9,13 @@ import java.util.Locale;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class EditClaimActivity extends Activity {
@@ -43,14 +45,29 @@ public class EditClaimActivity extends Activity {
 
 	    	DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 	    	
-	    	EditText NameEditText = (EditText) findViewById( R.id.claimNameEditText);  
-	    	NameEditText.setText(claim.getName());
+	    	EditText nameEditText = (EditText) findViewById( R.id.claimNameEditText);  
+	    	nameEditText.setText(claim.getName());
 	    	
 	    	EditText sdEditText = (EditText) findViewById( R.id.claimStartDateEditText);  
 	    	sdEditText.setText(format.format(claim.getStartDate()));
 	    	
 	    	EditText edEditText = (EditText) findViewById( R.id.claimEndDateEditText);  
 	    	edEditText.setText(format.format(claim.getEndDate()));
+	    	
+	    	/*
+	    	if (claim.getStatus().equals("Submitted") || claim.getStatus().equals("Approved")) {
+	    		nameEditText.setEnabled(false);
+	    		sdEditText.setEnabled(false);
+	    		edEditText.setEnabled(false);
+	    	}
+	    	*/
+	    	
+	    	Spinner statusSpinner = (Spinner) findViewById( R.id.claimStatusSpinner);  
+	    	
+	    	int statusPos = claim.getStatusPos();
+	    	
+	    	statusSpinner.setSelection(statusPos);
+	    	
 			
 	    	Button saveButton = (Button) findViewById(R.id.claimSaveButton);
 	    	saveButton.setText("Update");
@@ -79,6 +96,10 @@ public class EditClaimActivity extends Activity {
     	EditText edEditText = (EditText) findViewById( R.id.claimEndDateEditText);  
     	String edText = edEditText.getText().toString();
     	
+    	// Code adapted from http://www.mkyong.com/android/android-spinner-drop-down-list-example/
+    	Spinner statusSpinner = (Spinner) findViewById( R.id.claimStatusSpinner);  
+    	String statusText = String.valueOf(statusSpinner.getSelectedItem());
+    	
     	//code adapted from https://stackoverflow.com/questions/4216745/java-string-to-date-conversion 
     	// accessed Jan 2015
     	DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
@@ -94,7 +115,7 @@ public class EditClaimActivity extends Activity {
     	
 		if (!(sdDate == null || edDate == null || nameText == null)) { 
 	    	//---
-	    	Claim claim = new Claim(nameText, sdDate, edDate, "open" );
+	    	Claim claim = new Claim(nameText, sdDate, edDate, statusText );
 	    	
 	    	ClaimsListController ct = new ClaimsListController();
 	    	

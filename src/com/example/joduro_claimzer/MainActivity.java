@@ -69,11 +69,19 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				//Adapted from code posted by user914425 on https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android
-				// accessed Jan 2015  
-				Intent intent = new Intent(MainActivity.this, ListExpensesActivity.class);
-		        intent.putExtra("claim_position", position);
-		        startActivity(intent);
+				
+		    	ClaimsListController ct = new ClaimsListController();
+		    	Claim claim = ct.getClaim(position);
+				if (claim.getStatus().equals("Submitted") || claim.getStatus().equals("Approved")){
+					Toast.makeText(MainActivity.this,"Cannot edit Expenses for this " + claim.getStatus() + " Claim",Toast.LENGTH_SHORT).show();
+				}
+				else {
+					//Adapted from code posted by user914425 on https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android
+					// accessed Jan 2015  
+					Intent intent = new Intent(MainActivity.this, ListExpensesActivity.class);
+			        intent.putExtra("claim_position", position);
+			        startActivity(intent);
+				}
 				
 			}
         	

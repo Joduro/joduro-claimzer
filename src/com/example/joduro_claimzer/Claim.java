@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import android.util.Log;
+
 public class Claim {
 
 	private String name;
@@ -15,6 +17,17 @@ public class Claim {
 	private String status;
 	
 	private ArrayList<Expense> expensesList;
+	
+	public int getStatusPos() {
+		if (status.equals("In progress")) 
+			return 0;
+		if (status.equals("Submitted"))
+			return 1;
+		if (status.equals("Returned"))
+			return 2;
+		else
+			return 3;
+	}
 	
 	public Claim(String name, Date startDate, Date endDate,
 			String status/*, ArrayList<Expense> expensesList*/) {
@@ -53,7 +66,7 @@ public class Claim {
 		
 		DateFormat format = new SimpleDateFormat("EEE MMM DD yyyy", Locale.ENGLISH);
 		
-		return format.format(getStartDate()) + " - " + getName();
+		return format.format(getStartDate()) + " - " + getName() + "\n" + getStatus();
 	}
 	
 	/*
