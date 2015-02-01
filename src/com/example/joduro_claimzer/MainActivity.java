@@ -1,8 +1,19 @@
 package com.example.joduro_claimzer;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,10 +30,15 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	
+	private static final String FILENAME = "claims.sav";
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        loadClaims();
         
         ListView listView = (ListView) findViewById(R.id.ClaimsListView);
         final ArrayList<Claim> list = ClaimsListController.getClaimsList().getClaims();
@@ -39,6 +55,7 @@ public class MainActivity extends Activity {
         		//list.addAll(claims);
         		//Log.d("UPDATED CLAIMSLIST", "Claims has size: " + list.size());
         		claimAdapter.notifyDataSetChanged();
+        		saveClaims();
         	}
         });
         
@@ -121,4 +138,48 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+    
+    // Adapted from LonelyTwitter
+	public void saveClaims(){
+		//ClaimsListController ct = new ClaimsListController();
+		Gson gson = new Gson();
+		try {
+			FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE); //open file output
+			OutputStreamWriter osw = new OutputStreamWriter(fos);
+			gson.toJson(ClaimsListController.getClaimsList().getClaims(), osw);
+			osw.flush();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void loadClaims() {
+		Gson gson = new Gson();
+		ArrayList<Claim> claims = new ArrayList<Claim>();
+		try {
+			FileInputStream fis = openFileInput(FILENAME);
+			InputStreamReader in = new InputStreamReader(fis);
+			
+			// Taken from http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/index.html Jan 2015
+			Type typeOfT = new TypeToken<ArrayList<Claim>>(){}.getType();
+			claims = gson.fromJson(in, typeOfT);
+			fis.close();
+			
+			ClaimsListController.loadClaims(claims);
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
+
+

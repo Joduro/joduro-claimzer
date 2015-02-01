@@ -1,6 +1,13 @@
 package com.example.joduro_claimzer;
 
+
+import java.util.ArrayList;
 import java.util.Date;
+
+
+
+
+
 
 import android.util.Log;
 
@@ -9,7 +16,6 @@ import android.util.Log;
 
 public class ClaimsListController {
 	
-	// Lazy Singleton
 	private static ClaimsList claimsList = null;
 	
 	static public ClaimsList getClaimsList() {
@@ -43,4 +49,9 @@ public class ClaimsListController {
 		getClaimsList().updateClaim(claimPos, name, startDate, endDate, status);
 		
 	}
+
+	public static void loadClaims(ArrayList<Claim> claims) {
+		getClaimsList().loadClaims(claims);
+	}
+
 }

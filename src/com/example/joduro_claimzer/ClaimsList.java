@@ -64,4 +64,8 @@ public class ClaimsList {
 		claimsList.remove(pos);
 		notifyListeners();
 	}
+	public void loadClaims(ArrayList<Claim> claims) {
+		claimsList = claims;
+		
+	}
 }
