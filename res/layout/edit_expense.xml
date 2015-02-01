@@ -128,8 +128,19 @@
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/expDeleteButton"
+        android:layout_toLeftOf="@+id/expDeleteButton"
         android:minHeight="48dp"
         android:onClick="expSaveButton"
         android:text="@string/done_editing" />
+
+    <Button
+        android:id="@+id/expDeleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="expDeleteButton"
+        android:text="Delete" />
 
 </RelativeLayout>

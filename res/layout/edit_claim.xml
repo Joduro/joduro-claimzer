@@ -41,6 +41,8 @@
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/claimDeleteButton"
+        android:layout_toLeftOf="@+id/claimDeleteButton"
         android:layout_weight="0.13"
         android:longClickable="false"
         android:minHeight="48dp"
@@ -106,5 +108,14 @@
         android:layout_alignTop="@+id/claimStatusTextView"
         android:layout_toRightOf="@+id/claimStatusTextView"
         android:entries="@array/status_arrays" />
+
+    <Button
+        android:id="@+id/claimDeleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="claimDeleteButton"
+        android:text="Delete" />
 
 </RelativeLayout>

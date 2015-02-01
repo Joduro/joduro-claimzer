@@ -96,8 +96,8 @@ public class Claim {
 		expensesList.add(i, expense);
 	}
 	
-	public void removeExpense(Expense expense) {
-		expensesList.remove(expense);
+	public void removeExpense(int pos) {
+		expensesList.remove(pos);
 	}
 	
 	public ArrayList<Expense> getExpenses() {

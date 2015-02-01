@@ -22,7 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:onClick="editClaimScreen"
-        android:text="Add" />
+        android:text="Add Claim" />
 
     <TextView
         android:id="@+id/ClaimsTextView"

@@ -33,6 +33,9 @@ public class ClaimsListController {
 		getClaimsList().updateClaim(position, claim);
 	}
 	*/
+	public void removeClaim(int pos) {
+		getClaimsList().remove(pos);
+	}
 
 	public void updateClaim(int claimPos, String name, Date startDate,
 			Date endDate, String status) {

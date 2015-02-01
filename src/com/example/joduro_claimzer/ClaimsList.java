@@ -46,10 +46,6 @@ public class ClaimsList {
 		listeners.remove(l);
 	}
 	
-	public void removeClaim(Claim claim){
-		claimsList.remove(claim);
-	}
-	
 	public ArrayList<Claim> getClaims(){
 		Log.d("GETTING CLAIMS", "Claims has size " + claimsList.size());
 		return claimsList;
@@ -62,6 +58,10 @@ public class ClaimsList {
 		claim.setEndDate(endDate);
 		claim.setStartDate(startDate);
 		claim.setStatus(status);
+		notifyListeners();
+	}
+	public void remove(int pos) {
+		claimsList.remove(pos);
 		notifyListeners();
 	}
 }

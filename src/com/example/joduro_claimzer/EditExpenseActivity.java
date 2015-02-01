@@ -158,6 +158,13 @@ public class EditExpenseActivity extends Activity
         
     }
 
+    public void expDeleteButton(View v){
+    	if (updatingExpPos >= 0){
+    		claim.removeExpense(updatingExpPos);	
+    	}
+    	Toast.makeText(this,"Expense Deleted",Toast.LENGTH_SHORT).show();
+    	finish();
+    }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{

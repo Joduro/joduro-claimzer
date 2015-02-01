@@ -141,6 +141,13 @@ public class EditClaimActivity extends Activity {
 		}
         
     }
+    public void claimDeleteButton(View v){
+    	if (updatingClaimPos >= 0){
+    		new ClaimsListController().removeClaim(updatingClaimPos);
+    	}
+    	Toast.makeText(this,"Claim Deleted",Toast.LENGTH_SHORT).show();
+    	finish();
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
