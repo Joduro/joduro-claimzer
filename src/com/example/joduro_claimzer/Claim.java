@@ -25,7 +25,6 @@ public class Claim {
 	}
 
 	public void addExpense(Expense expense) {
-		/*
 		int i = 0;
 		for (; i < expensesList.size();++i){
 			if(expense.getDate().before(expensesList.get(i).getDate())){
@@ -33,12 +32,14 @@ public class Claim {
 			}
 		}
 		expensesList.add(i, expense);
-		*/
-		expensesList.add(expense);
 	}
 	
 	public void removeExpense(Expense expense) {
 		expensesList.remove(expense);
+	}
+	
+	public String toString() {
+		return getStartDate().toString() + "\n" + getName();
 	}
 	
 	/*

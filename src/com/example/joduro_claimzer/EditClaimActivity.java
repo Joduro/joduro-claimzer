@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,6 +22,53 @@ public class EditClaimActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_claim);
+		
+		updatingClaimPos = -1;
+		
+	}
+	
+	protected void onStart(){
+		super.onStart();
+		
+		//Adapted from code posted by user914425 on https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android 
+		// accessed Jan 2015 
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			updatingClaimPos = extras.getInt("claim_position");
+			
+	    	ClaimsListController ct = new ClaimsListController();
+	    	Claim claim = ct.getClaim(updatingClaimPos);
+	    	
+	    	//Fill in the claim to match the existing one
+	    	//code adapted from https://stackoverflow.com/questions/4216745/java-string-to-date-conversion 
+	    	// accessed Jan 2015
+	    	DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+	    	
+	    	EditText NameEditText = (EditText) findViewById( R.id.claimNameEditText);  
+	    	NameEditText.setText(claim.getName());
+	    	
+	    	EditText sdEditText = (EditText) findViewById( R.id.ClaimStartDateEditText);  
+	    	sdEditText.setText(format.format(claim.getStartDate()));
+	    	
+	    	EditText edEditText = (EditText) findViewById( R.id.claimEndDateEditText);  
+	    	edEditText.setText(format.format(claim.getEndDate()));
+			
+	    	Button saveButton = (Button) findViewById(R.id.claimSaveButton);
+	    	saveButton.setText("Update");
+		}
+		else {
+			updatingClaimPos = -1;
+		}
+		
+		if (updatingClaimPos >= 0){
+			Toast.makeText(this,"Updating a claim",Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	protected int updatingClaimPos;
+	
+	public void setClaimPos(int x) {
+		this.updatingClaimPos = x;
 	}
 	
     public void claimSaveButton(View v){
@@ -36,8 +84,9 @@ public class EditClaimActivity extends Activity {
     	EditText edEditText = (EditText) findViewById( R.id.claimEndDateEditText);  
     	String edText = edEditText.getText().toString();
     	
-    	//code snippit stolen from https://stackoverflow.com/questions/4216745/java-string-to-date-conversion Jan 2015
-    	DateFormat format = new SimpleDateFormat("d/MM/yyyy", Locale.ENGLISH);
+    	//code adapted from https://stackoverflow.com/questions/4216745/java-string-to-date-conversion 
+    	// accessed Jan 2015
+    	DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
     	
     	Date sdDate = null;
     	Date edDate = null;
@@ -48,21 +97,31 @@ public class EditClaimActivity extends Activity {
 			Toast.makeText(this,"Improper Date",Toast.LENGTH_SHORT).show();
 		}
     	
-    	
-    	//---
-    	Claim claim = new Claim(nameText, sdDate, edDate, "open" );
-    	
-    	ClaimsListController ct = new ClaimsListController();
-    	ct.addClaim(claim);
-    	
-    	Toast.makeText(this,claim.getName(),Toast.LENGTH_SHORT).show();
-    	
-    	//!!!!!NEED TO SAVE IT TO DISK SOMEHOW
-    	
-    	finish();
-    	
-        //Intent intent = new Intent(EditClaimActivity.this, MainActivity.class);
-        //startActivity(intent);
+		if (!(sdDate == null || edDate == null || nameText == null)) { 
+	    	//---
+	    	Claim claim = new Claim(nameText, sdDate, edDate, "open" );
+	    	
+	    	ClaimsListController ct = new ClaimsListController();
+	    	
+	    	//case for updating a claim
+			if (updatingClaimPos >= 0){
+				ct.updateClaim(updatingClaimPos, claim);
+				Toast.makeText(this,"Updated Claim " + nameText,Toast.LENGTH_SHORT).show();
+				updatingClaimPos = -1;
+			}
+			
+			//case for creating a new claim
+			else{
+		    	ct.addClaim(claim); 	
+		    	Toast.makeText(this,"New Claim " + nameText,Toast.LENGTH_SHORT).show();
+			}
+	    	//!!!!!NEED TO SAVE IT TO DISK SOMEHOW
+	    	
+	    	finish();
+	    	
+	        //Intent intent = new Intent(EditClaimActivity.this, MainActivity.class);
+	        //startActivity(intent);
+		}
         
     }
 

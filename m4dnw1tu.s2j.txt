@@ -1,0 +1,17 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	modified:   res/layout/edit_claim.xml
+#	modified:   res/values/strings.xml
+#	modified:   src/com/example/joduro_claimzer/Claim.java
+#	modified:   src/com/example/joduro_claimzer/ClaimsList.java
+#	modified:   src/com/example/joduro_claimzer/ClaimsListController.java
+#	modified:   src/com/example/joduro_claimzer/EditClaimActivity.java
+#	modified:   src/com/example/joduro_claimzer/MainActivity.java
+#
+# Untracked files:
+#	src/com/example/joduro_claimzer/Listener.java
+#
+

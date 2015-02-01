@@ -92,4 +92,15 @@
         android:onClick="claimSaveButton"
         android:text="@string/done_editing" />
 
+    <Spinner
+        android:id="@+id/spinner1"
+        style="android:spinnerStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/claimEndDateEditText"
+        android:layout_marginTop="46dp"
+        android:layout_toLeftOf="@+id/ClaimStartDateEditText"
+        android:entries="@array/date_arrays"
+        android:prompt="@id/addClaimButton" />
+
 </RelativeLayout>
