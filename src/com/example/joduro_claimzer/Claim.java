@@ -51,7 +51,7 @@ public class Claim {
 	
 	public String toString() {
 		
-		DateFormat format = new SimpleDateFormat("DD EEE MMM yyyy", Locale.ENGLISH);
+		DateFormat format = new SimpleDateFormat("EEE MMM DD yyyy", Locale.ENGLISH);
 		
 		return format.format(getStartDate()) + " - " + getName();
 	}

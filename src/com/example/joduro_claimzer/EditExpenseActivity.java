@@ -60,7 +60,7 @@ public class EditExpenseActivity extends Activity
 	    	//ClaimsListController ct = new ClaimsListController();
 	    	//Claim claim = ct.getClaim(updatingExpPos);
 	    	
-	    	//Fill in the claim to match the existing one
+	    	//Fill in the expense to match the existing one
 
 	    	DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 	    	
@@ -75,6 +75,9 @@ public class EditExpenseActivity extends Activity
 			
 	    	EditText currEditText = (EditText) findViewById( R.id.expCurrencyEditText);  
 	    	currEditText.setText(exp.getCurrency());
+	    	
+	    	EditText catEditText = (EditText) findViewById( R.id.expCatEditText);  
+	    	catEditText.setText(exp.getCategory());
 	    	
 	    	Button saveButton = (Button) findViewById(R.id.expSaveButton);
 	    	saveButton.setText("Update");
@@ -99,13 +102,20 @@ public class EditExpenseActivity extends Activity
     	EditText costEditText = (EditText) findViewById( R.id.expCostEditText);  
     	String costText = costEditText.getText().toString();
     	
+    	EditText currEditText = (EditText) findViewById( R.id.expCurrencyEditText);  
+    	String currText = currEditText.getText().toString();
     	
-    	// Code Adapted from WhiteFang34's post on https://stackoverflow.com/questions/5769669/convert-string-to-double-in-java
+
+    	if (costText.length() <= 0 || currText.length() <= 0){
+    		Toast.makeText(this,"Missing Cost or and or Currency",Toast.LENGTH_SHORT).show();
+    	}
+    	
+    	// Code adapted from WhiteFang34's post on https://stackoverflow.com/questions/5769669/convert-string-to-double-in-java
     	// accessed Jan 2015
     	double cost = Double.parseDouble(costText);
     	
-    	EditText currEditText = (EditText) findViewById( R.id.expCurrencyEditText);  
-    	String currText = currEditText.getText().toString();
+    	EditText catEditText = (EditText) findViewById( R.id.expCatEditText);  
+    	String catText = catEditText.getText().toString();
     	
     	//code adapted from https://stackoverflow.com/questions/4216745/java-string-to-date-conversion 
     	// accessed Jan 2015
@@ -120,7 +130,7 @@ public class EditExpenseActivity extends Activity
     	
 		if (!(date == null)) { 
 	    	//---
-	    	Expense expense = new Expense(date, descText, cost, currText);
+	    	Expense expense = new Expense(date, descText, catText, cost, currText);
 	    	
 	    	//ClaimsListController ct = new ClaimsListController();
 	    	//Claim claim = ct.getClaim(claimPos);

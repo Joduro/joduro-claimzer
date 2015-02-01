@@ -1,6 +1,9 @@
 package com.example.joduro_claimzer;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Expense {
 	
@@ -11,15 +14,19 @@ public class Expense {
 	private String currency;
 
 	public String toString() {
-		return getDesc();
+		
+		DateFormat format = new SimpleDateFormat("EEE MMM DD yyyy", Locale.ENGLISH);
+		
+		return format.format(getDate()) + " - " + getDesc() + "\n" + getCost() + " " + getCurrency();
+		
 	}
 	
-	public Expense(Date date, String desc, /*String category,*/ double cost,
+	public Expense(Date date, String desc, String category, double cost,
 			String currency) {
 		super();
 		this.date = date;
 		this.desc = desc;
-		//this.category = category;
+		this.category = category;
 		this.cost = cost;
 		this.currency = currency;
 	}

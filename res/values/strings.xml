@@ -33,4 +33,6 @@
 
     <string name="title_activity_list_expenses">ListExpensesActivity</string>
 
+    <string name="category">Category:</string>
+
 </resources>
