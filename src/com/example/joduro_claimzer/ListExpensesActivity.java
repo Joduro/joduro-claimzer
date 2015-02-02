@@ -1,3 +1,14 @@
+/*
+ Copyright 2015 Jeffrey Oduro
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ */
+
+// Handles the layout for showing the expenses of an individual claim and adding/updating individual expense items
+
 package com.example.joduro_claimzer;
 
 import java.text.DateFormat;
@@ -14,7 +25,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
@@ -75,7 +85,7 @@ public class ListExpensesActivity extends Activity {
 	//fill in info about the claim
 	protected void setInfo(Claim claim){
     	TextView expEditText = (TextView) findViewById( R.id.ExpensesTextView);  
-    	DateFormat format = new SimpleDateFormat("EEE MMM DD yyyy", Locale.ENGLISH);
+    	DateFormat format = new SimpleDateFormat("EEE MMM dd yyyy", Locale.ENGLISH);
     	expEditText.setText("Claim: " + claim.getName() + "\n" + format.format(claim.getStartDate()) + " - " + format.format(claim.getEndDate()) + "\n" + "Total: " + claim.getTotal());
     	expEditText.setBackgroundColor(Color.BLACK);
     	expEditText.setTextColor(Color.WHITE);

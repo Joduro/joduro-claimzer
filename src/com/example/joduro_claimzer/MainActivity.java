@@ -1,3 +1,12 @@
+/*
+ Copyright 2015 Jeffrey Oduro
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ */
+
 package com.example.joduro_claimzer;
 
 import java.io.FileInputStream;
@@ -16,7 +25,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,11 +57,6 @@ public class MainActivity extends Activity {
         ClaimsListController.getClaimsList().addListener(new Listener() {
         	@Override
         	public void update() {
-        		//Log.d("UPDATING CLAIMSLIST", "Claims has size: " + list.size());
-        		//list.clear();
-        		//ArrayList<Claim> claims = ClaimsListController.getClaimsList().getClaims();
-        		//list.addAll(claims);
-        		//Log.d("UPDATED CLAIMSLIST", "Claims has size: " + list.size());
         		claimAdapter.notifyDataSetChanged();
         		saveClaims();
         	}
@@ -64,14 +67,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> adapterView, View view,
-					int position, long id) {
-				Toast.makeText(MainActivity.this,list.get(position).getName(),Toast.LENGTH_SHORT).show();
-				
-				//Claim claim = list.get(position);
-				//ClaimsListController.getClaimsList().removeClaim(claim);
-				
-				//Adapted from code posted by user914425 on https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android
-				// accessed Jan 2015      
+					int position, long id) {    
 				Intent intent = new Intent(MainActivity.this, EditClaimActivity.class);
 		        intent.putExtra("claim_position", position);
 		        startActivity(intent);
@@ -98,22 +94,13 @@ public class MainActivity extends Activity {
 					Intent intent = new Intent(MainActivity.this, ListExpensesActivity.class);
 			        intent.putExtra("claim_position", position);
 			        startActivity(intent);
-				}
-				
-			}
-        	
-        	
-        });
-        
+				}	
+			}  	
+        });   
     }
-
-
+    
     protected void onResume() {
     	super.onResume();
-    	//ListView listView = (ListView) findViewById(R.id.ClaimsListView);
-    	//listView.getAdapter().notifyDataSetChanged();
-    	//expenseAdapter.notifyDataSetChanged();
-    	
     }
     public void editClaimScreen(View v){
         // Switch activity to edit claim
@@ -139,9 +126,8 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
     
-    // Adapted from LonelyTwitter
+    // Adapted from my copy of LonelyTwitter https://github.com/Joduro/lonelyTwitter Jan 2015
 	public void saveClaims(){
-		//ClaimsListController ct = new ClaimsListController();
 		Gson gson = new Gson();
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE); //open file output
@@ -150,10 +136,8 @@ public class MainActivity extends Activity {
 			osw.flush();
 			fos.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -165,7 +149,7 @@ public class MainActivity extends Activity {
 			FileInputStream fis = openFileInput(FILENAME);
 			InputStreamReader in = new InputStreamReader(fis);
 			
-			// Taken from http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/index.html Jan 2015
+			// Adapted from http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/index.html Jan 2015
 			Type typeOfT = new TypeToken<ArrayList<Claim>>(){}.getType();
 			claims = gson.fromJson(in, typeOfT);
 			fis.close();
@@ -173,10 +157,8 @@ public class MainActivity extends Activity {
 			ClaimsListController.loadClaims(claims);
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -1,3 +1,14 @@
+/*
+ Copyright 2015 Jeffrey Oduro
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ */
+
+// Handles the layout and operations of creating/editing a claim item. 
+
 package com.example.joduro_claimzer;
 
 import java.text.DateFormat;
@@ -10,7 +21,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,7 +54,7 @@ public class EditClaimActivity extends Activity {
 	    	
 	    	//Fill in the claim to match the existing one
 
-	    	DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+	    	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 	    	
 	    	EditText nameEditText = (EditText) findViewById( R.id.claimNameEditText);  
 	    	nameEditText.setText(claim.getName());
@@ -103,7 +113,7 @@ public class EditClaimActivity extends Activity {
     	
     	//code adapted from https://stackoverflow.com/questions/4216745/java-string-to-date-conversion 
     	// accessed Jan 2015
-    	DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+    	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
     	
     	Date sdDate = null;
     	Date edDate = null;
@@ -150,6 +160,23 @@ public class EditClaimActivity extends Activity {
     	finish();
     }
     
+    public void sendEmailButton(View v){
+    	EditText emailEditText = (EditText) findViewById( R.id.claimEmailEditText);  
+    	String address = emailEditText.getText().toString();
+    	
+    	if(address.length() > 5 && address.contains("@") && address.contains(".")) {
+        	if (updatingClaimPos < 0){
+        		Toast.makeText(this,"Claim has no Expenses",Toast.LENGTH_SHORT).show();
+        	}
+        	else {
+	    		emailClaimTo(ClaimsListController.getClaimsList().getClaim(updatingClaimPos), address);
+        	}
+    	}
+    	else{
+    		Toast.makeText(this,"Invalid Email Address",Toast.LENGTH_SHORT).show();
+    	}
+    }
+    
     private void emailClaimTo(Claim claim, String address){
 		//code adapted from Igor Popov's post at https://stackoverflow.com/questions/8284706/send-email-via-gmail
 		Intent send = new Intent(Intent.ACTION_SENDTO);
@@ -162,32 +189,6 @@ public class EditClaimActivity extends Activity {
 		send.setData(uri);
 		startActivity(Intent.createChooser(send, "Send mail..."));
 	}
-    
-    public void sendEmailButton(View v){
-    	EditText emailEditText = (EditText) findViewById( R.id.claimEmailEditText);  
-    	String address = emailEditText.getText().toString();
-    	
-    	if(address.length() > 5 && address.contains("@") && address.contains(".")) {
-        	if (updatingClaimPos < 0){
-        		Toast.makeText(this,"Claim has no Expenses",Toast.LENGTH_SHORT).show();
-        	}
-        	else {
-	    		/*
-	    		// Adapted from doraemon's post at https://stackoverflow.com/questions/8284706/send-email-via-gmail
-	    		Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-	    	            "mailto",address, null));
-	    		emailIntent.putExtra(Intent.EXTRA_SUBJECT, "EXTRA_SUBJECT");
-	    		startActivity(Intent.createChooser(emailIntent, "Send email..."));
-	    		
-	    		}
-	    		 */
-	    		emailClaimTo(ClaimsListController.getClaimsList().getClaim(updatingClaimPos), address);
-        	}
-    	}
-    	else{
-    		Toast.makeText(this,"Invalid Email Address",Toast.LENGTH_SHORT).show();
-    	}
-    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

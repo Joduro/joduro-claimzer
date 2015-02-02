@@ -1,3 +1,14 @@
+/*
+ Copyright 2015 Jeffrey Oduro
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ */
+
+// Handles the layout and operations of creating/editing an expense item. 
+
 package com.example.joduro_claimzer;
 
 import java.text.DateFormat;
@@ -16,7 +27,6 @@ import android.widget.Toast;
 
 public class EditExpenseActivity extends Activity
 {
-
 	protected int claimPos;
 	
 	protected Claim claim;
@@ -56,13 +66,10 @@ public class EditExpenseActivity extends Activity
 			updatingExpPos = extras.getInt("expense_position");
 			
 			Expense exp = claim.getExpenses().get(updatingExpPos);
-			
-	    	//ClaimsListController ct = new ClaimsListController();
-	    	//Claim claim = ct.getClaim(updatingExpPos);
 	    	
 	    	//Fill in the expense to match the existing one
 
-	    	DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+	    	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 	    	
 	    	EditText descEditText = (EditText) findViewById( R.id.expDescEditText);  
 	    	descEditText.setText(exp.getDesc());
@@ -119,8 +126,7 @@ public class EditExpenseActivity extends Activity
     	
     	//code adapted from https://stackoverflow.com/questions/4216745/java-string-to-date-conversion 
     	// accessed Jan 2015
-    	DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-    	
+    	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
     	Date date = null;
 		try {
 			date = format.parse(dateText);
@@ -132,28 +138,22 @@ public class EditExpenseActivity extends Activity
 	    	//---
 	    	Expense expense = new Expense(date, descText, catText, cost, currText);
 	    	
-	    	//ClaimsListController ct = new ClaimsListController();
-	    	//Claim claim = ct.getClaim(claimPos);
-	    	
-	    	//case for updating a claim
+	    	//case for updating an expense
 			if (updatingExpPos >= 0){
 				claim.updateExpense(updatingExpPos, expense);
 				Toast.makeText(this,"Updated Expense " + descText,Toast.LENGTH_SHORT).show();
 				updatingExpPos = -1;
 			}
 			
-			//case for creating a new claim
+			//case for creating a new expense
 			else{
 		    	claim.addExpense(expense); 	
 		    	Toast.makeText(this,"New Expense " + descText,Toast.LENGTH_SHORT).show();
 			}
-	    	//!!!!!NEED TO SAVE IT TO DISK SOMEHOW
 			claim.updateTotal();
 			Toast.makeText(this,"Total: " + claim.getTotal(),Toast.LENGTH_SHORT).show();
 	    	finish();
 	    	
-	        //Intent intent = new Intent(EditClaimActivity.this, MainActivity.class);
-	        //startActivity(intent);
 		}
         
     }

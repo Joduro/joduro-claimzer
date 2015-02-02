@@ -1,18 +1,20 @@
+/*
+ Copyright 2015 Jeffrey Oduro
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ */
+
+// Is the sole owner and controller of a ClaimsList that is store all of the claims
+
 package com.example.joduro_claimzer;
 
 
 import java.util.ArrayList;
 import java.util.Date;
-
-
-
-
-
-
 import android.util.Log;
-
-//import java.util.Calendar;
-//import java.util.Date;
 
 public class ClaimsListController {
 	
@@ -31,14 +33,10 @@ public class ClaimsListController {
 		getClaimsList().addClaim(claim);
 	}
 	
-	public Claim getClaim(int position){
-		return getClaimsList().getClaim(position);
+	public Claim getClaim(int pos){
+		return getClaimsList().getClaim(pos);
 	}
-	/*
-	public void updateClaim(int position, Claim claim){
-		getClaimsList().updateClaim(position, claim);
-	}
-	*/
+
 	public void removeClaim(int pos) {
 		getClaimsList().remove(pos);
 	}
