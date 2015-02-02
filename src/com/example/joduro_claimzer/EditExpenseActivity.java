@@ -142,7 +142,6 @@ public class EditExpenseActivity extends Activity
 			if (updatingExpPos >= 0){
 				claim.updateExpense(updatingExpPos, expense);
 				Toast.makeText(this,"Updated Expense " + descText,Toast.LENGTH_SHORT).show();
-				updatingExpPos = -1;
 			}
 			
 			//case for creating a new expense

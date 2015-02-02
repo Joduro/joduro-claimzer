@@ -94,13 +94,16 @@ public class Claim {
 				tempTotal+= items[1];
 				tempTotal+= items[0];
 				tempTotal+= ", ";
-			}			
-			setTotal(tempTotal);
+			}
 			
-			// since this is called each time an expense is made or edited this call to MainActivity's 
-			// listener will update it's values and save the entire new claimslist to disk 
-	    	ClaimsListController.getClaimsList().notifyListeners();
+			setTotal(tempTotal);
 		}
+		else{
+			setTotal("0");
+		}
+		// since this is called each time an expense is made or edited this call to MainActivity's 
+		// listener will update it's values and save the entire new claimslist to disk 
+    	ClaimsListController.getClaimsList().notifyListeners();
 	}
 	
 	//formats the claim and its expesnes to be emailed
