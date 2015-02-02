@@ -165,4 +165,17 @@ public class Claim {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getEmailBody() {
+		String body = "";
+		DateFormat format = new SimpleDateFormat("EEE MMM DD yyyy", Locale.ENGLISH);
+		
+		body += "Claim: " + getName() + "\n" + format.format(getStartDate()) + " - " + format.format(getEndDate()) + "\n" 
+				+ "Total: " + getTotal() + "\n===================================================";
+		
+		for (Expense e : expensesList){
+			body += "\n" + format.format(e.getDate()) + " | " + e.getDesc() + " | " + e.getCost() + " " + e.getCurrency() + "\n-------------------------------";
+					
+		}
+		return body;
+	}
 }

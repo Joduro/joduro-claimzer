@@ -58,6 +58,7 @@
         android:layout_alignBottom="@+id/expDateTextView"
         android:layout_toRightOf="@+id/expDateTextView"
         android:ems="10"
+        android:hint="DD/MM/YYYY"
         android:inputType="date" />
 
     <TextView

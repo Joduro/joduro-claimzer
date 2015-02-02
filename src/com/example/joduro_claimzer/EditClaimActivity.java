@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -147,6 +148,45 @@ public class EditClaimActivity extends Activity {
     	}
     	Toast.makeText(this,"Claim Deleted",Toast.LENGTH_SHORT).show();
     	finish();
+    }
+    
+    private void emailClaimTo(Claim claim, String address){
+		//code adapted from Igor Popov's post at https://stackoverflow.com/questions/8284706/send-email-via-gmail
+		Intent send = new Intent(Intent.ACTION_SENDTO);
+		
+		String uriText = "mailto:" + Uri.encode(address) + 
+		          "?subject=" + Uri.encode("Travel Claim \"" + claim.getName() + "\" Expenses") + 
+		          "&body=" + Uri.encode(claim.getEmailBody());
+		Uri uri = Uri.parse(uriText);
+
+		send.setData(uri);
+		startActivity(Intent.createChooser(send, "Send mail..."));
+	}
+    
+    public void sendEmailButton(View v){
+    	EditText emailEditText = (EditText) findViewById( R.id.claimEmailEditText);  
+    	String address = emailEditText.getText().toString();
+    	
+    	if(address.length() > 5 && address.contains("@") && address.contains(".")) {
+        	if (updatingClaimPos < 0){
+        		Toast.makeText(this,"Claim has no Expenses",Toast.LENGTH_SHORT).show();
+        	}
+        	else {
+	    		/*
+	    		// Adapted from doraemon's post at https://stackoverflow.com/questions/8284706/send-email-via-gmail
+	    		Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+	    	            "mailto",address, null));
+	    		emailIntent.putExtra(Intent.EXTRA_SUBJECT, "EXTRA_SUBJECT");
+	    		startActivity(Intent.createChooser(emailIntent, "Send email..."));
+	    		
+	    		}
+	    		 */
+	    		emailClaimTo(ClaimsListController.getClaimsList().getClaim(updatingClaimPos), address);
+        	}
+    	}
+    	else{
+    		Toast.makeText(this,"Invalid Email Address",Toast.LENGTH_SHORT).show();
+    	}
     }
 
 	@Override
