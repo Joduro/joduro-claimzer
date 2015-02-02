@@ -160,7 +160,8 @@ public class EditExpenseActivity extends Activity
 
     public void expDeleteButton(View v){
     	if (updatingExpPos >= 0){
-    		claim.removeExpense(updatingExpPos);	
+    		claim.removeExpense(updatingExpPos);
+    		claim.updateTotal();
     	}
     	Toast.makeText(this,"Expense Deleted",Toast.LENGTH_SHORT).show();
     	finish();
