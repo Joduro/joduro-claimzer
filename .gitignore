@@ -1,5 +1,6 @@
+# Default gitignore made by Github for Windows
 # Built application files
-*.apk
+
 *.ap_
 
 # Files for the Dalvik VM
@@ -7,10 +8,6 @@
 
 # Java class files
 *.class
-
-# Generated files
-bin/
-gen/
 
 # Gradle files
 .gradle/
@@ -28,27 +25,6 @@ proguard/
 # =========================
 # Operating System Files
 # =========================
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
 
 # Windows
 # =========================

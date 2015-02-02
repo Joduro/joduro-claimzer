@@ -14,7 +14,6 @@ package com.example.joduro_claimzer;
 
 import java.util.ArrayList;
 import java.util.Date;
-import android.util.Log;
 
 public class ClaimsListController {
 	
@@ -23,7 +22,6 @@ public class ClaimsListController {
 	static public ClaimsList getClaimsList() {
 
 		if (claimsList == null) {
-			Log.d("CREATING NEW CLAIMSLIST", "Claimslist is null so creating new");
 			claimsList = new ClaimsList();
 		}
 		return claimsList;	
